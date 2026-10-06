@@ -1,2 +1,2 @@
 # bernisvidalor.github.io
-Web de Bernis Vidalor
+Web de Bernis Vidalor.
