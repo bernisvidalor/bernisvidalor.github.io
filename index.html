@@ -17,6 +17,7 @@
       --naranja: #FF5A00;
       --blanco: #FFFFFF;
       --gris: #A8A8A8;
+      --teal: #00E5D0;
     }
 
     * { box-sizing: border-box; }
@@ -94,6 +95,10 @@
     }
     .formatos a:hover { background: var(--lima); color: var(--fondo); }
     a:focus-visible { outline: 3px solid var(--naranja); outline-offset: 3px; }
+    .formatos a.leer { color: var(--naranja); border-color: var(--naranja); }
+    .formatos a.leer:hover { background: var(--naranja); color: var(--fondo); }
+    .formatos a.comprar { color: var(--teal); border-color: var(--teal); }
+    .formatos a.comprar:hover { background: var(--teal); color: var(--fondo); }
 
     /* Pie: bloque naranja + damero (como la tarjeta BV2) */
     footer { margin-top: 4.5rem; }
