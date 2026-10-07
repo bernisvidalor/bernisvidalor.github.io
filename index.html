@@ -122,22 +122,6 @@
       .logo { width: 6rem; }
       .franjas { height: 5.6rem; }
     }
-    /* Leyenda de colores de los botones */
-    .leyenda {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      margin: -1rem 0 0;
-    }
-    .leyenda p { margin: 0 0 0.45rem; }
-    .leyenda strong {
-      font-family: "Unbounded", "Arial Black", sans-serif;
-      font-weight: 500;
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-    }
-    .leyenda .azul { color: var(--teal); }
-    .leyenda .amarillo { color: var(--lima); }
-    .leyenda .naranja { color: var(--naranja); }
   </style>
 </head>
 <body>
@@ -153,12 +137,6 @@
       <p>Novelas y relatos del Universo B.</p>
     </div>
   </header>
-
-  <div class="leyenda">
-    <p class="azul"><strong>EN AZUL:</strong> Para comprar el libro en Amazon, en formato Kindle o papel.</p>
-    <p class="amarillo"><strong>EN AMARILLO:</strong> Para descargar el texto GRATIS en formato EPUB. Legible por Kindle y para tablets o teléfonos.</p>
-    <p class="naranja"><strong>EN NARANJA:</strong> Leer el texto en la plataforma que indica el botón. En FICTOGRAMA puede leerse sin registrarse, para BOOKNET e INKSPIRED hace falta registrarse en la plataforma.</p>
-  </div>
 
   <h2>Novelas</h2>
 
@@ -198,6 +176,7 @@
       <!-- Un botón por formato. Entre las comillas de href va la ruta del archivo,
            por ejemplo: href="textos/caldos-de-ofenon.epub"
            Para otro formato, duplica la línea entera y cambia ruta y texto. -->
+      <a href="textos/ElBotonDelFinDelMundo.epub" download>EPUB</a>
       <a class="leer" href="https://fictograma.com/d/2766-el-boton-del-fin-del-mundo" target="_blank" rel="noopener">FICTOGRAMA</a>
       <a class="leer" href="https://booknet.com/es/book/el-boton-del-fin-del-mundo-b490075" target="_blank" rel="noopener">BOOKNET</a>
     </div>
@@ -210,6 +189,7 @@
       <!-- Un botón por formato. Entre las comillas de href va la ruta del archivo,
            por ejemplo: href="textos/caldos-de-ofenon.epub"
            Para otro formato, duplica la línea entera y cambia ruta y texto. -->
+      <a href="textos/LaMantaRosada.epub" download>EPUB</a>
       <a class="leer" href="https://fictograma.com/d/2889-la-manta-rosada" target="_blank" rel="noopener">FICTOGRAMA</a>
       <a class="leer" href="https://booknet.com/es/book/la-manta-rosada-b489113" target="_blank" rel="noopener">BOOKNET</a>
     </div>
@@ -222,6 +202,7 @@
       <!-- Un botón por formato. Entre las comillas de href va la ruta del archivo,
            por ejemplo: href="textos/caldos-de-ofenon.epub"
            Para otro formato, duplica la línea entera y cambia ruta y texto. -->
+      <a href="textos/SieteMonstruosYMedio.epub" download>EPUB</a>
       <a class="leer" href="https://fictograma.com/d/2229-siete-monstruos-y-medio" target="_blank" rel="noopener">FICTOGRAMA</a>
       <a class="leer" href="https://booknet.com/es/book/siete-monstruos-y-medio-b484791" target="_blank" rel="noopener">BOOKNET</a>
     </div>
@@ -272,7 +253,7 @@
 <footer>
   <div class="bloque">
     <!-- Cuando tengas el Ko-fi, cambia el enlace de abajo -->
-    <p>Si te ha gustado algo, puedes invitarme a una birra pinchando aquí >>> <a href="https://ko-fi.com/bernisvidalor" target="_blank" rel="noopener">Donar en Ko-fi</a>.</p>
+    <p>Si te ha gustado algo, puedes invitarme a una birra pinchando aquí >>> <a href="Ko-fi.com/bernisvidalor" target="_blank" rel="noopener">Donar en Ko-fi</a>.</p>
   </div>
   <div class="damero" aria-hidden="true"></div>
 </footer>
