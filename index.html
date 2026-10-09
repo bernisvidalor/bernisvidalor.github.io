@@ -9,22 +9,86 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    /* Aplica el tema guardado antes de pintar la página, para que no parpadee */
+    try { var t = localStorage.getItem("tema"); if (t && t !== "lima") document.documentElement.dataset.tema = t; } catch (e) {}
+  </script>
   <style>
-    /* ====== PALETA: cambia estos cinco y cambia toda la web ====== */
+    /* ====== TEMAS DE COLOR ======
+       Cada tema es un bloque de variables. Para crear uno nuevo, copia
+       un bloque [data-tema="..."], cámbiale el nombre y los colores,
+       y añade su botón en <div class="temas"> (más abajo, en el HTML).
+       Papeles de los colores:
+         c1 = EPUB gratis, franjas, barras de sección, damero
+         c2 = leer en Fictograma, logo, borde de obras, pie
+         c3 = comprar en Amazon
+       Cada uno tiene versión "bloque" (grandes superficies) y versión
+       "-texto" (letras y botones), porque un color que queda bien de
+       fondo a veces no se lee como texto. */
+
+    /* Tema por defecto: LIMA (tarjeta BV2: negro, lima, naranja) */
     :root {
       --fondo: #000000;
-      --lima: #E4FF00;
-      --naranja: #FF5A00;
-      --blanco: #FFFFFF;
-      --gris: #A8A8A8;
-      --teal: #00E5D0;
+      --texto: #FFFFFF;
+      --texto-suave: #A8A8A8;
+      --c1: #E4FF00;  --c1-texto: #E4FF00;
+      --c2: #FF5A00;  --c2-texto: #FF5A00;
+      --c3: #00E5D0;  --c3-texto: #00E5D0;
+      --tinta-boton: #000000;   /* letra del botón al pasar el ratón */
+      --tinta-barra: #000000;   /* letra de las barras de sección */
+      --tinta-pie: #000000;     /* letra del bloque del pie */
+      --damero-b: #FFFFFF;      /* segundo color del damero */
+      --borde-portada: #333333;
+      --portada-vacia: #161616;
+      --nombre-c1: "EN AMARILLO:";
+      --nombre-c2: "EN NARANJA:";
+      --nombre-c3: "EN AZUL:";
     }
+
+    /* Tema ROSA (tarjeta BV6: blanco, menta, rosa, azul marino) */
+    [data-tema="rosa"] {
+      --fondo: #FFFFFF;
+      --texto: #000000;
+      --texto-suave: #636363;
+      --c1: #00FFA8;  --c1-texto: #00FFA8;
+      --c2: #FF0066;  --c2-texto: #FF0066;
+      --c3: #03006A;  --c3-texto: #03006A;
+      --tinta-boton: #FFFFFF;
+      --tinta-barra: #03006A;
+      --tinta-pie: #03006A;
+      --damero-b: #03006A;
+      --borde-portada: #000000;
+      --portada-vacia: #EDEDF7;
+      --nombre-c1: "EN VERDE:";
+      --nombre-c2: "EN ROSA:";
+      --nombre-c3: "EN AZUL:";
+    }
+
+    /* Tema NARANJA */
+    [data-tema="naranja"] {
+      --fondo: #FFAA59;
+      --texto: #000000;
+      --texto-suave: #414141;
+      --c1: #FFFFFF;  --c1-texto: #FFFFFF;
+      --c2: #003FAB;  --c2-texto: #003FAB;
+      --c3: #AB0000;  --c3-texto: #AB0000;
+      --tinta-boton: #FFFFFF;
+      --tinta-barra: #AB0000;
+      --tinta-pie: #FFFFFF;
+      --damero-b: #AB0000;
+      --borde-portada: #000000;
+      --portada-vacia: #EDEDF7;
+      --nombre-c1: "EN BLANCO:";
+      --nombre-c2: "EN AZUL:";
+      --nombre-c3: "EN ROJO:";
+    }
+
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       background: var(--fondo);
-      color: var(--blanco);
+      color: var(--texto);
       font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
       font-size: 1.0625rem;
       line-height: 1.6;
@@ -35,7 +99,7 @@
       height: 8.6rem;
       background: repeating-linear-gradient(
         to bottom,
-        var(--lima) 0 1.1rem,
+        var(--c1) 0 1.1rem,
         var(--fondo) 1.1rem 1.5rem
       );
       position: relative;
@@ -44,7 +108,7 @@
       content: "";
       position: absolute; right: 0; bottom: 0;
       width: 20%; height: 1.1rem;
-      background: var(--naranja);
+      background: var(--c2);
     }
 
     main { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
@@ -54,27 +118,27 @@
       display: flex; align-items: center; gap: 1.75rem;
       padding: 3.5rem 0 3rem;
     }
-    .logo { width: 7.5rem; flex: none; color: var(--naranja); }
+    .logo { width: 7.5rem; flex: none; color: var(--c2); }
     .logo svg { display: block; width: 100%; height: auto; }
     h1 {
       font-family: "Unbounded", "Arial Black", sans-serif;
       font-weight: 700; font-size: clamp(1.7rem, 6vw, 2.6rem);
       line-height: 1.05; margin: 0 0 0.5rem; letter-spacing: -0.01em;
     }
-    header p { margin: 0; color: var(--gris); }
+    header p { margin: 0; color: var(--texto-suave); }
 
     /* Barras de sección */
     h2 {
       font-family: "Unbounded", "Arial Black", sans-serif;
       font-weight: 700; font-size: 1.05rem; letter-spacing: 0.06em;
       text-transform: uppercase;
-      background: var(--lima); color: var(--fondo);
+      background: var(--c1); color: var(--tinta-barra);
       margin: 3rem 0 1.5rem; padding: 0.55rem 1rem;
     }
 
     /* Cada obra */
     .obra {
-      border-left: 4px solid var(--naranja);
+      border-left: 4px solid var(--c2);
       padding: 0.2rem 0 0.2rem 1.1rem;
       margin-bottom: 2rem;
     }
@@ -82,42 +146,42 @@
       font-family: "Unbounded", "Arial Black", sans-serif;
       font-weight: 500; font-size: 1.2rem; margin: 0;
     }
-    .obra p { color: var(--gris); margin: 0.3rem 0 0.8rem; }
-    .obra .pronto { color: var(--naranja); font-weight: 600; margin: 0; }
+    .obra p { color: var(--texto-suave); margin: 0.3rem 0 0.8rem; }
+    .obra .pronto { color: var(--c2-texto); font-weight: 600; margin: 0; }
 
     .formatos { display: flex; flex-wrap: wrap; gap: 0.6rem; }
     .formatos a {
       font-family: "Unbounded", "Arial Black", sans-serif;
       font-size: 0.85rem; font-weight: 500;
-      color: var(--lima); text-decoration: none;
-      border: 2px solid var(--lima);
+      color: var(--c1-texto); text-decoration: none;
+      border: 2px solid var(--c1-texto);
       padding: 0.35rem 0.9rem;
     }
-    .formatos a:hover { background: var(--lima); color: var(--fondo); }
-    a:focus-visible { outline: 3px solid var(--naranja); outline-offset: 3px; }
-    .formatos a.leer { color: var(--naranja); border-color: var(--naranja); }
-    .formatos a.leer:hover { background: var(--naranja); color: var(--fondo); }
-    .formatos a.comprar { color: var(--teal); border-color: var(--teal); }
-    .formatos a.comprar:hover { background: var(--teal); color: var(--fondo); }
+    .formatos a:hover { background: var(--c1-texto); color: var(--tinta-boton); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--c2-texto); outline-offset: 3px; }
+    .formatos a.leer { color: var(--c2-texto); border-color: var(--c2-texto); }
+    .formatos a.leer:hover { background: var(--c2-texto); color: var(--tinta-boton); }
+    .formatos a.comprar { color: var(--c3-texto); border-color: var(--c3-texto); }
+    .formatos a.comprar:hover { background: var(--c3-texto); color: var(--tinta-boton); }
 
     /* Pie: bloque naranja + damero (como la tarjeta BV2) */
     footer { margin-top: 4.5rem; }
     .bloque {
-      background: var(--naranja); color: var(--fondo);
+      background: var(--c2); color: var(--tinta-pie);
       padding: 2.5rem 0;
     }
     .bloque p { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; font-weight: 600; }
-    .bloque a { color: var(--fondo); }
+    .bloque a { color: var(--tinta-pie); }
     .version {
       max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 1rem;
-      color: var(--gris); font-size: 0.75rem; letter-spacing: 0.02em;
+      color: var(--texto-suave); font-size: 0.75rem; letter-spacing: 0.02em;
     }
     .damero {
       height: 2.5rem;
       background: repeating-linear-gradient(
         to right,
-        var(--lima) 0 6rem,
-        var(--blanco) 6rem 9rem
+        var(--c1) 0 6rem,
+        var(--damero-b) 6rem 9rem
       );
     }
 
@@ -139,24 +203,48 @@
       font-size: 0.8rem;
       letter-spacing: 0.03em;
     }
-    .leyenda .azul { color: var(--teal); }
-    .leyenda .amarillo { color: var(--lima); }
-    .leyenda .naranja { color: var(--naranja); }
+    .leyenda .azul { color: var(--c3-texto); }
+    .leyenda .amarillo { color: var(--c1-texto); }
+    .leyenda .naranja { color: var(--c2-texto); }
+    /* El nombre del color sale del tema activo */
+    .leyenda .azul strong::before { content: var(--nombre-c3); }
+    .leyenda .amarillo strong::before { content: var(--nombre-c1); }
+    .leyenda .naranja strong::before { content: var(--nombre-c2); }
     /* Portadas en miniatura */
     .obra { display: flex; gap: 1.1rem; align-items: flex-start; }
     .portada {
       flex: none; display: block;
       width: 5.5rem; height: auto;
-      border: 1px solid #333;
+      border: 1px solid var(--borde-portada);
     }
     .portada.vacia {
       aspect-ratio: 5 / 7;
       display: flex; align-items: center; justify-content: center;
-      background: #161616; color: var(--naranja);
+      background: var(--portada-vacia); color: var(--c2);
     }
     .portada.vacia svg { width: 70%; height: auto; }
     .info { flex: 1; min-width: 0; }
     @media (max-width: 520px) { .portada { width: 4.5rem; } }
+    /* Selector de temas: muestras de color arriba a la derecha */
+    header { position: relative; }
+    .temas {
+      position: absolute; top: 1rem; right: 0;
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    .temas span {
+      font-family: "Unbounded", "Arial Black", sans-serif;
+      font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--texto-suave); margin-right: 0.15rem;
+    }
+    .temas button {
+      width: 1.9rem; height: 1.9rem; padding: 0; cursor: pointer;
+      border: 2px solid var(--texto-suave);
+    }
+    .temas button[aria-pressed="true"] { border-color: var(--texto); outline: 2px solid var(--texto); outline-offset: 2px; }
+    /* Cada muestra lleva sus propios colores fijos, sea cual sea el tema activo */
+    .temas .m-lima { background: linear-gradient(135deg, #000 0 40%, #E4FF00 40% 70%, #FF5A00 70%); }
+    .temas .m-rosa { background: linear-gradient(135deg, #00FFA8 0 40%, #FF0066 40% 70%, #03006A 70%); }
+    .temas .m-naranja { background: linear-gradient(135deg, #FFAA59 0 40%, #59BDFF 40% 70%, #AB0000 70%); }
   </style>
 </head>
 <body>
@@ -173,12 +261,20 @@
       <h1>Bernis Vidalor</h1>
       <p>Novelas y relatos del Universo B.</p>
     </div>
+    <!-- Selector de temas. Para un tema nuevo, duplica un botón y cambia
+         data-tema (igual que en el CSS) y la clase de la muestra. -->
+    <div class="temas" role="group" aria-label="Colores de la web">
+      <span>Color</span>
+      <button type="button" class="m-lima" data-tema="lima" aria-label="Tema lima" title="Lima"></button>
+      <button type="button" class="m-rosa" data-tema="rosa" aria-label="Tema rosa" title="Rosa"></button>
+      <button type="button" class="m-naranja" data-tema="naranja" aria-label="Tema naranja" title="Naranja"></button>
+    </div>
   </header>
 
   <div class="leyenda">
-    <p class="azul"><strong>EN AZUL:</strong> Para comprar el libro en Amazon, en formato Kindle o papel.</p>
-    <p class="amarillo"><strong>EN AMARILLO:</strong> Para descargar el texto GRATIS en formato EPUB. Legible por Kindle y para tablets o teléfonos.</p>
-    <p class="naranja"><strong>EN NARANJA:</strong> Leer el texto en la plataforma FICTOGRAMA. Legible sin registro. </p>
+    <p class="azul"><strong></strong> Para comprar el libro en Amazon, en formato Kindle o papel.</p>
+    <p class="amarillo"><strong></strong> Para descargar el texto GRATIS en formato EPUB. Legible por Kindle y para tablets o teléfonos.</p>
+    <p class="naranja"><strong></strong> Leer el texto en la plataforma FICTOGRAMA. Legible sin registro. </p>
   </div>
 
   <h2>Novelas</h2>
@@ -309,12 +405,34 @@
 </main>
 
 <footer>
-  <p class="version">Versión 0.993 · © 10/2026 Bernis Vidalor (Daniel Benito Molina)</p>
+  <p class="version">Versión 0.994 · © 10/2026 Bernis Vidalor (Daniel Benito Molina)</p>
   <div class="bloque">
     <p>Si te ha gustado algo, puedes invitarme a una birra pinchando aquí >>> <a href="https://ko-fi.com/bernisvidalor" target="_blank" rel="noopener">Donar en Ko-fi</a>.</p>
   </div>
   <div class="damero" aria-hidden="true"></div>
 </footer>
+
+<script>
+  /* Selector de temas */
+  (function () {
+    var raiz = document.documentElement;
+    var botones = document.querySelectorAll(".temas button");
+    var meta = document.querySelector('meta[name="theme-color"]');
+    function aplicar(tema) {
+      if (tema === "lima") delete raiz.dataset.tema; else raiz.dataset.tema = tema;
+      botones.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.tema === tema ? "true" : "false"); });
+      if (meta) meta.content = getComputedStyle(raiz).getPropertyValue("--fondo").trim();
+    }
+    var actual = raiz.dataset.tema || "lima";
+    aplicar(actual);
+    botones.forEach(function (b) {
+      b.addEventListener("click", function () {
+        aplicar(b.dataset.tema);
+        try { localStorage.setItem("tema", b.dataset.tema); } catch (e) {}
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
