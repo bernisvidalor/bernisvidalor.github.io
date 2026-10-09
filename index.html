@@ -69,18 +69,19 @@
       --fondo: #FFAA59;
       --texto: #000000;
       --texto-suave: #414141;
-      --c1: #FFFFFF;  --c1-texto: #FFFFFF;
+      --c1: #AB0000;  --c1-texto: #AB0000;
       --c2: #003FAB;  --c2-texto: #003FAB;
-      --c3: #AB0000;  --c3-texto: #AB0000;
-      --tinta-boton: #FFFFFF;
-      --tinta-barra: #AB0000;
+      --c3: #FFFFFF;  --c3-texto: #FFFFFF;
+      --tinta-c1: #000000;
+      --tinta-boton: #AB0000;
+      --tinta-barra: #FFFFFF;
       --tinta-pie: #FFFFFF;
-      --damero-b: #AB0000;
+      --damero-b: #FFFFFF;
       --borde-portada: #000000;
       --portada-vacia: #EDEDF7;
-      --nombre-c1: "EN BLANCO:";
+      --nombre-c1: "EN ROJO:";
       --nombre-c2: "EN AZUL:";
-      --nombre-c3: "EN ROJO:";
+      --nombre-c3: "EN BLANCO:";
     }
 
 
@@ -157,12 +158,12 @@
       border: 2px solid var(--c1-texto);
       padding: 0.35rem 0.9rem;
     }
-    .formatos a:hover { background: var(--c1-texto); color: var(--tinta-boton); }
+    .formatos a:hover { background: var(--c1-texto); color: var(--tinta-c1, var(--tinta-boton)); }
     a:focus-visible, button:focus-visible { outline: 3px solid var(--c2-texto); outline-offset: 3px; }
     .formatos a.leer { color: var(--c2-texto); border-color: var(--c2-texto); }
-    .formatos a.leer:hover { background: var(--c2-texto); color: var(--tinta-boton); }
+    .formatos a.leer:hover { background: var(--c2-texto); color: var(--tinta-c2, var(--tinta-boton)); }
     .formatos a.comprar { color: var(--c3-texto); border-color: var(--c3-texto); }
-    .formatos a.comprar:hover { background: var(--c3-texto); color: var(--tinta-boton); }
+    .formatos a.comprar:hover { background: var(--c3-texto); color: var(--tinta-c3, var(--tinta-boton)); }}
 
     /* Pie: bloque naranja + damero (como la tarjeta BV2) */
     footer { margin-top: 4.5rem; }
@@ -244,7 +245,7 @@
     /* Cada muestra lleva sus propios colores fijos, sea cual sea el tema activo */
     .temas .m-lima { background: linear-gradient(135deg, #000 0 40%, #E4FF00 40% 70%, #FF5A00 70%); }
     .temas .m-rosa { background: linear-gradient(135deg, #00FFA8 0 40%, #FF0066 40% 70%, #03006A 70%); }
-    .temas .m-naranja { background: linear-gradient(135deg, #FFAA59 0 40%, #59BDFF 40% 70%, #AB0000 70%); }
+    .temas .m-naranja { background: linear-gradient(135deg, #FFAA59 0 40%, #003FAB 40% 70%, #AB0000 70%); }
   </style>
 </head>
 <body>
@@ -405,7 +406,7 @@
 </main>
 
 <footer>
-  <p class="version">Versión 0.994 · © 10/2026 Bernis Vidalor (Daniel Benito Molina)</p>
+  <p class="version">Versión 0.995 · © 9/10/2026 - 13:30 >>> Bernis Vidalor (Daniel Benito Molina)</p>
   <div class="bloque">
     <p>Si te ha gustado algo, puedes invitarme a una birra pinchando aquí >>> <a href="https://ko-fi.com/bernisvidalor" target="_blank" rel="noopener">Donar en Ko-fi</a>.</p>
   </div>
