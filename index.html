@@ -6,7 +6,7 @@
   <title>Bernis Vidalor — Textos del Universo B</title>
   <meta name="description" content="Novelas y relatos de Bernis Vidalor para descargar gratis.">
   <meta name="theme-color" content="#000000">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" id="icono" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080'%3E%3Crect width='1080' height='1080' fill='%23000000'/%3E%3Cpath d='M0 0H36L558 270 330 388 0 220ZM0 1080H36L558 810 330 692 0 860ZM480 540 788 381 1095 540 788 699Z' fill='%23E4FF00'/%3E%3Cpath d='M480 540 555 500 632 540 555 578Z' fill='%23000000'/%3E%3Cpath d='M36 0H480L1003 270 480 540 1003 810 480 1080H36L558 810 36 540 558 270Z' fill='%23FF5A00'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
   <script>
@@ -434,7 +434,7 @@
 </main>
 
 <footer>
-  <p class="version">Versión 0.998 · 10/10/2026 - 01:01 >>> © Bernis Vidalor (Daniel Benito Molina) | <a href="mailto:bernisvidalor@gmail.com">bernisvidalor@gmail.com</a></p>
+  <p class="version">Versión 0.999 · 11/10/2026 - 02:09 >>> © Bernis Vidalor (Daniel Benito Molina) | <a href="mailto:bernisvidalor@gmail.com">bernisvidalor@gmail.com</a></p>
   <div class="bloque">
     <p>Si te ha gustado algo, puedes invitarme a una birra pinchando aquí >>> <a href="https://ko-fi.com/bernisvidalor" target="_blank" rel="noopener">Donar en Ko-fi</a>.</p>
   </div>
@@ -451,7 +451,13 @@
       if (tema === "lima") delete raiz.dataset.tema; else raiz.dataset.tema = tema;
       botones.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.tema === tema ? "true" : "false"); });
       if (meta) meta.content = getComputedStyle(raiz).getPropertyValue("--fondo").trim();
-    }
+                 var css = getComputedStyle(raiz), c = function (v) { return css.getPropertyValue(v).trim(); };
+      var svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1080 1080'>" +
+        "<rect width='1080' height='1080' fill='" + c("--fondo") + "'/>" +
+        "<path d='M0 0H36L558 270 330 388 0 220ZM0 1080H36L558 810 330 692 0 860ZM480 540 788 381 1095 540 788 699Z' fill='" + c("--c1") + "'/>" +
+        "<path d='M480 540 555 500 632 540 555 578Z' fill='" + c("--fondo") + "'/>" +
+        "<path d='M36 0H480L1003 270 480 540 1003 810 480 1080H36L558 810 36 540 558 270Z' fill='" + c("--c2") + "'/></svg>";
+      document.getElementById("icono").href = "data:image/svg+xml," + encodeURIComponent(svg);
     var actual = raiz.dataset.tema || "lima";
     aplicar(actual);
     botones.forEach(function (b) {
