@@ -1,0 +1,310 @@
+/* ====== TEMAS DE COLOR ======
+   Cada tema es un bloque de variables. Para crear uno nuevo, copia
+   un bloque [data-tema="..."], cámbiale el nombre y los colores,
+   y añade su botón en <div class="temas"> (más abajo, en el HTML).
+   Papeles de los colores:
+     c1 = EPUB gratis, franjas, barras de sección, damero
+     c2 = leer en Fictograma, logo, borde de obras, pie
+     c3 = comprar en Amazon
+   Cada uno tiene versión "bloque" (grandes superficies) y versión
+   "-texto" (letras y botones), porque un color que queda bien de
+   fondo a veces no se lee como texto. */
+
+/* Tema por defecto: LIMA (tarjeta BV2: negro, lima, naranja) */
+:root {
+  --fondo: #000000;
+  --texto: #FFFFFF;
+  --texto-suave: #A8A8A8;
+  --c1: #E4FF00;  --c1-texto: #E4FF00;
+  --c2: #FF5A00;  --c2-texto: #FF5A00;
+  --c3: #00E5D0;  --c3-texto: #00E5D0;
+  --tinta-boton: #000000;   /* letra del botón al pasar el ratón */
+  --tinta-barra: #000000;   /* letra de las barras de sección */
+  --tinta-pie: #000000;     /* letra del bloque del pie */
+  --damero-b: #FFFFFF;      /* segundo color del damero */
+  --borde-portada: #333333;
+  --portada-vacia: #161616;
+  --nombre-c1: "EN AMARILLO:";
+  --nombre-c2: "EN NARANJA:";
+  --nombre-c3: "EN AZUL:";
+  --logo-claro: var(--c1);  /* piezas claras del logo y del icono */
+  --tinta-mundo: #000000;   /* letra de las barras sobre c3 */
+}
+
+/* Tema ROSA (tarjeta BV6: blanco, menta, rosa, azul marino) */
+[data-tema="rosa"] {
+  --fondo: #FFFFFF;
+  --texto: #000000;
+  --texto-suave: #636363;
+  --c1: #00FFA8;  --c1-texto: #00FFA8;
+  --c2: #FF0066;  --c2-texto: #FF0066;
+  --c3: #03006A;  --c3-texto: #03006A;
+  --tinta-boton: #FFFFFF;
+  --tinta-barra: #03006A;
+  --tinta-pie: #03006A;
+  --tinta-mundo: #FFFFFF;
+  --damero-b: #03006A;
+  --borde-portada: #000000;
+  --portada-vacia: #EDEDF7;
+  --nombre-c1: "EN VERDE:";
+  --nombre-c2: "EN ROSA:";
+  --nombre-c3: "EN AZUL:";
+}
+
+/* Tema NARANJA */
+[data-tema="naranja"] {
+  --fondo: #FFAA59;
+  --texto: #000000;
+  --texto-suave: #414141;
+  --c1: #AB0000;  --c1-texto: #AB0000;
+  --c2: #003FAB;  --c2-texto: #003FAB;
+  --c3: #FFFFFF;  --c3-texto: #FFFFFF;
+  --tinta-c1: #000000;
+  --tinta-boton: #AB0000;
+  --tinta-barra: #FFFFFF;
+  --tinta-pie: #FFFFFF;
+  --tinta-mundo: #000000;
+  --damero-b: #FFFFFF;
+  --borde-portada: #000000;
+  --portada-vacia: #EDEDF7;
+  --nombre-c1: "EN ROJO:";
+  --nombre-c2: "EN AZUL:";
+  --nombre-c3: "EN BLANCO:";
+}
+
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+/* Franjas de arriba (como la tarjeta BV2) */
+.franjas {
+  height: 8.6rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--c1) 0 1.1rem,
+    var(--fondo) 1.1rem 1.5rem
+  );
+  position: relative;
+}
+.franjas::after {
+  content: "";
+  position: absolute; right: 0; bottom: 0;
+  width: 20%; height: 1.1rem;
+  background: var(--c2);
+}
+
+main { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Cabecera con el logo */
+header {
+  display: flex; align-items: center; gap: 1.75rem;
+  padding: 3.5rem 0 3rem;
+}
+.logo { width: 6.5rem; flex: none; color: var(--c2); }
+.logo svg { display: block; width: 100%; height: auto; }
+h1 {
+  font-family: "Michroma", "Unbounded", "Arial Black", sans-serif;
+  font-weight: 400; font-size: clamp(1.5rem, 6vw, 2.4rem);
+  line-height: 1.15; margin: 0 0 0.5rem;
+  /* La Michroma solo existe en fino: este trazo la engorda un poco.
+     Va en "em" para que sea proporcional al tamaño de la letra. */
+  -webkit-text-stroke: 0.035em currentColor;
+}
+header p { margin: 0; color: var(--texto-suave); }
+
+/* Barras de sección */
+h2 {
+  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-weight: 700; font-size: 1.05rem; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--c1); color: var(--tinta-barra);
+  margin: 3rem 0 1.5rem; padding: 0.55rem 1rem;
+}
+
+/* Cada obra */
+.obra {
+  border-left: 4px solid var(--c1);
+  padding: 0.2rem 0 0.2rem 1.1rem;
+  margin-bottom: 2rem;
+}
+.obra h3 {
+  font-family: "Michroma", "Unbounded", "Arial Black", sans-serif;
+  font-weight: 400; font-size: 1.4rem; margin: 0 0 0.15rem; line-height: 1.3;
+  -webkit-text-stroke: 0.033em currentColor;
+}
+.obra p { color: var(--texto-suave); margin: 0.3rem 0 0.8rem; }
+.obra .pronto { color: var(--c2-texto); font-weight: 600; margin: 0; }
+
+.formatos { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.formatos a {
+  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--c1-texto); text-decoration: none;
+  border: 2px solid var(--c1-texto);
+  padding: 0.35rem 0.9rem;
+}
+.formatos a:hover { background: var(--c1-texto); color: var(--tinta-c1, var(--tinta-boton)); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--c2-texto); outline-offset: 3px; }
+.formatos a.leer { color: var(--c2-texto); border-color: var(--c2-texto); }
+.formatos a.leer:hover { background: var(--c2-texto); color: var(--tinta-c2, var(--tinta-boton)); }
+.formatos a.comprar { color: var(--c3-texto); border-color: var(--c3-texto); }
+.formatos a.comprar:hover { background: var(--c3-texto); color: var(--tinta-c3, var(--tinta-boton)); }
+
+/* Pie: bloque naranja + damero (como la tarjeta BV2) */
+footer { margin-top: 4.5rem; }
+.bloque {
+  background: var(--c2); color: var(--tinta-pie);
+  padding: 2.5rem 0;
+}
+.bloque p { max-width: 46rem; margin: 0 auto; padding: 0 1.5rem; font-weight: 600; }
+.bloque a { color: var(--tinta-pie); }
+.version a { color: inherit; }
+.version {
+  max-width: 46rem; margin: 0 auto; padding: 0 1.5rem 1rem;
+  color: var(--texto-suave); font-size: 0.75rem; letter-spacing: 0.02em;
+
+}
+.damero {
+  height: 2.5rem;
+  background: repeating-linear-gradient(
+    to right,
+    var(--c1) 0 6rem,
+    var(--damero-b) 6rem 9rem
+  );
+}
+
+@media (max-width: 520px) {
+  header { gap: 0.9rem; padding-top: 4rem; }
+  .logo { width: 3.6rem; }
+  header p { font-size: 0.9rem; line-height: 1.4; }
+  .formatos { gap: 0.45rem; }
+  .formatos a { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+  .franjas { height: 5.6rem; }
+}
+/* Leyenda de colores de los botones */
+.leyenda {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: -1rem 0 0;
+}
+.leyenda p { margin: 0 0 0.45rem; }
+.leyenda strong {
+  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+}
+.leyenda .azul { color: var(--c3-texto); }
+.leyenda .amarillo { color: var(--c1-texto); }
+.leyenda .naranja { color: var(--c2-texto); }
+/* El nombre del color sale del tema activo */
+.leyenda .azul strong::before { content: var(--nombre-c3); }
+.leyenda .amarillo strong::before { content: var(--nombre-c1); }
+.leyenda .naranja strong::before { content: var(--nombre-c2); }
+/* Portadas en miniatura */
+.obra { display: flex; gap: 1.1rem; align-items: flex-start; }
+.portada {
+  flex: none; display: block;
+  width: 5.5rem; height: auto;
+  border: 1px solid var(--borde-portada);
+}
+.portada.vacia {
+  aspect-ratio: 5 / 7;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--portada-vacia); color: var(--c2);
+}
+.portada.vacia svg { width: 70%; height: auto; }
+.info { flex: 1; min-width: 0; }
+@media (max-width: 520px) { .portada { width: 4.5rem; } .obra h3 { font-size: 1.2rem; } }
+/* Selector de temas: muestras de color arriba a la derecha */
+header { position: relative; }
+.temas {
+  position: absolute; top: 1rem; right: 0;
+  display: flex; gap: 0.5rem; align-items: center;
+}
+.temas span {
+  font-family: "Unbounded", "Arial Black", sans-serif;
+  font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--texto-suave); margin-right: 0.15rem;
+}
+.temas button {
+  width: 1.9rem; height: 1.9rem; padding: 0; cursor: pointer;
+  border: 2px solid var(--texto-suave);
+}
+.temas button[aria-pressed="true"] { border-color: var(--texto); outline: 2px solid var(--texto); outline-offset: 2px; }
+/* Cada muestra lleva sus propios colores fijos, sea cual sea el tema activo */
+.temas .m-lima { background: linear-gradient(135deg, #000 0 40%, #E4FF00 40% 70%, #FF5A00 70%); }
+.temas .m-rosa { background: linear-gradient(135deg, #00FFA8 0 40%, #FF0066 40% 70%, #03006A 70%); }
+.temas .m-naranja { background: linear-gradient(135deg, #FFAA59 0 40%, #003FAB 40% 70%, #AB0000 70%); }
+/* Redes sociales: cuadrados con logo, alternando c1, c2 y c3 */
+.redes { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 3.5rem 0 0; }
+.redes a {
+  width: 2.9rem; height: 2.9rem; flex: none;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid currentColor; color: var(--c1-texto);
+}
+.redes a:nth-child(3n+2) { color: var(--c2-texto); }
+.redes a:nth-child(3n+3) { color: var(--c3-texto); }
+.redes svg { width: 55%; height: 55%; display: block; }
+.redes a:hover { background: var(--c1-texto); border-color: var(--c1-texto); color: var(--tinta-c1, var(--tinta-boton)); }
+.redes a:nth-child(3n+2):hover { background: var(--c2-texto); border-color: var(--c2-texto); color: var(--tinta-c2, var(--tinta-boton)); }
+.redes a:nth-child(3n+3):hover { background: var(--c3-texto); border-color: var(--c3-texto); color: var(--tinta-c3, var(--tinta-boton)); }
+
+/* ====== BARRAS DE MUNDO (Universo B / Fuera del Universo B) ======
+   Mismo tamaño y letra que las barras normales, en c2, con una raya
+   debajo del color de las barras de su mundo:
+     Universo B           -> raya c1, y sus barras (Novelas...) en c1
+     Fuera del Universo B -> raya c3, y sus barras (Fotografía...) en c3 */
+h2.mundo {
+  background: var(--c2); color: var(--tinta-pie);
+  border-bottom: 0.45rem solid var(--c1);
+  margin-top: 4.5rem;
+}
+h2.fuera { background: var(--c3); color: var(--tinta-mundo); }
+h2.mundo.fuera { background: var(--c2); color: var(--tinta-pie); border-bottom-color: var(--c3); }
+.leyenda + h2.mundo { margin-top: 2.5rem; }
+h2.mundo + h2 { margin-top: 0; }
+
+/* Botón neutro (color del texto): para enlaces que no son ni EPUB,
+   ni Fictograma, ni Amazon, y así no se lía la leyenda de colores. */
+.formatos a.ir { color: var(--texto); border-color: var(--texto); }
+.formatos a.ir:hover { background: var(--texto); color: var(--fondo); }
+
+/* ====== GALERÍA (galeria.html) ====== */
+header h1 a { color: inherit; text-decoration: none; }
+.galeria {
+  display: grid; gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  margin: 0 0 2rem;
+}
+.galeria figure { margin: 0; }
+.galeria img, .galeria .hueco {
+  display: block; width: 100%; aspect-ratio: 1; object-fit: cover;
+  border: 1px solid var(--borde-portada);
+}
+/* Huecos de prueba mientras no haya imágenes de verdad */
+.galeria .hueco {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--portada-vacia); color: var(--c1-texto);
+  font-family: "Unbounded", "Arial Black", sans-serif; font-size: 1.6rem;
+}
+.galeria figure:nth-child(3n+2) .hueco { color: var(--c2-texto); }
+.galeria figure:nth-child(3n+3) .hueco { color: var(--c3-texto); }
+.galeria figcaption { color: var(--texto-suave); font-size: 0.85rem; line-height: 1.35; margin-top: 0.4rem; }
+.intro { color: var(--texto-suave); margin: -0.5rem 0 1.5rem; }
+@media (max-width: 520px) { .galeria { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; } }
+header > a { flex: none; display: block; }
+.formatos + h2.mundo { margin-top: 2.5rem; }
+
+/* Bloques de "Fuera del Universo B": raya lateral e icono en c3,
+   a juego con sus barras. El icono va en negativo (cuadro c3, dibujo en
+   la tinta de c3) para que se lea en todos los temas. */
+.obra.fuera { border-left-color: var(--c3); }
+.obra.fuera .portada.vacia { background: var(--c3); color: var(--tinta-mundo); border-color: var(--c3); }
